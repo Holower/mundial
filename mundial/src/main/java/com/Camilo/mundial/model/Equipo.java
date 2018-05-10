@@ -1,15 +1,17 @@
 package com.Camilo.mundial.model;
 
 import java.io.Serializable;
+import java.util.List;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+
 import javax.persistence.Table;
 
-@SuppressWarnings("serial")
+
 @Entity
 @Table(name = "equipo")
 public class Equipo implements Serializable {
@@ -22,11 +24,6 @@ public class Equipo implements Serializable {
 	@Column(name = "presidente")
 	private String presidente;
 
-	public Equipo(String nombre, String presidente) {
-		super();
-		this.nombre = nombre;
-		this.presidente = presidente;
-	}
 
 	public Equipo() {
 		super();

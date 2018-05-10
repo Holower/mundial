@@ -2,24 +2,23 @@ package com.Camilo.mundial.model;
 
 import java.io.Serializable;
 import java.util.Date;
-
 import javax.persistence.Column;
+import javax.persistence.EmbeddedId;
 import javax.persistence.Entity;
-import javax.persistence.FetchType;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
-@SuppressWarnings("serial")
+
 @Entity
 @Table(name = "jugador")
 public class Jugador implements Serializable {
-	@ManyToOne(optional = true, fetch = FetchType.EAGER)
-	@JoinColumn(name = "id")
+	@EmbeddedId
+	@Column(name = "id")
+	private JugadorPK id;
+	@ManyToOne
+	@JoinColumn (name="equipo",insertable=false, updatable=false)
 	private Equipo equipo;
-	@Column(name = "numrero")
-	private int numero;
-	@Column(name = "nombre")
 	private String nombre;
 	@Column(name = "email")
 	private String email;
@@ -28,19 +27,9 @@ public class Jugador implements Serializable {
 	@Column(name = "fechanacimiento")
 	private Date fechanacimineto;
 
-	public Jugador(Equipo equipo, int numero, String nombre, String email, String posicion, Date fechanacimineto) {
-		super();
-		this.equipo = equipo;
-		this.numero = numero;
-		this.nombre = nombre;
-		this.email = email;
-		this.posicion = posicion;
-		this.fechanacimineto = fechanacimineto;
-	}
 
 	public Jugador() {
-		super();
-		// TODO Auto-generated constructor stub
+		
 	}
 
 	public Date getFechanacimineto() {
@@ -51,6 +40,8 @@ public class Jugador implements Serializable {
 		this.fechanacimineto = fechanacimineto;
 	}
 
+	
+	
 	public Equipo getEquipo() {
 		return equipo;
 	}
@@ -59,12 +50,12 @@ public class Jugador implements Serializable {
 		this.equipo = equipo;
 	}
 
-	public int getNumero() {
-		return numero;
+	public JugadorPK getId() {
+		return id;
 	}
 
-	public void setNumero(int numero) {
-		this.numero = numero;
+	public void setId(JugadorPK id) {
+		this.id = id;
 	}
 
 	public String getNombre() {
